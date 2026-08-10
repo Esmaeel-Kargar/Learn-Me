@@ -16,6 +16,8 @@ interface Step {
   title: string;
   badge: string;
   subtitle: string;
+  keyConcepts: string[];
+  experimentGoal: string;
   quizQuestion: string;
   quizOptions: string[];
   correctOptionIndex: number;
@@ -25,59 +27,87 @@ interface Step {
 const STEPS: Step[] = [
   {
     id: 1,
-    title: 'Lesson 1: The Artificial Neuron',
+    title: 'Lesson 1: The Artificial Neuron (Perceptron)',
     badge: 'Step 1 of 4',
-    subtitle: 'Learn how a single artificial neuron receives input signals, multiplies them by weight dials, adds a bias, and decides whether to fire.',
-    quizQuestion: 'What is the main purpose of a "Weight" in a neuron?',
-    quizOptions: [
-      'It controls the speed of electricity in the wire.',
-      'It determines how important or influential an input signal is.',
-      'It clears the memory of the neural network.',
+    subtitle: 'Understand how a single artificial neuron receives input signals, multiplies them by importance weights, adds a baseline bias, and determines whether to trigger an output decision.',
+    keyConcepts: [
+      'Inputs (x): Raw data features (e.g. 1 = Sunny, 0 = Rainy).',
+      'Weights (w): Importance knobs that scale the influence of each input.',
+      'Bias (b): Baseline threshold shifting the decision boundary up or down.',
+      'Activation (σ): Gate function squashing raw weighted sums into normalized scores.',
     ],
-    correctOptionIndex: 1,
-    quizExplanation: 'Correct! Weights act like importance knobs. A large positive weight amplifies an input, while a zero weight ignores it completely.',
+    experimentGoal: '🧪 Interactive Goal: Try selecting the "Email Spam Filter" scenario below and toggle Input 1 to NO (0.0) to observe how the total weighted sum changes in real-time!',
+    quizQuestion: 'If an input feature x₁ = 1.0 has a weight w₁ = -4.0, what does this negative weight do to the decision?',
+    quizOptions: [
+      'It strongly penalizes the decision score, making the neuron far LESS likely to fire.',
+      'It speeds up the computer processor.',
+      'It multiplies the input by zero, ignoring it completely.',
+    ],
+    correctOptionIndex: 0,
+    quizExplanation: 'Correct! Negative weights act as penalties or suppressors. When a positive feature is multiplied by a negative weight, it lowers the weighted sum!',
   },
   {
     id: 2,
-    title: 'Lesson 2: Multi-Layer Deep Networks',
+    title: 'Lesson 2: Multi-Layer Deep Neural Networks',
     badge: 'Step 2 of 4',
-    subtitle: 'Connecting individual neurons into hidden layers allows the network to combine simple features into complex recognition engines.',
-    quizQuestion: 'Why do we need "Activation Functions" between layers?',
+    subtitle: 'Connecting individual neurons into stacked Hidden Layers creates Deep Learning networks capable of feature extraction and complex pattern recognition.',
+    keyConcepts: [
+      'Layer 0 (Input): Converts raw pixels, text, or audio into numbers.',
+      'Hidden Layer 1: Detects primitive low-level shapes, edges, or pitch shifts.',
+      'Hidden Layer 2: Combines primitive edges into eyes, wheels, or sound phonemes.',
+      'Non-Linear Activation (ReLU/Tanh): Essential gate functions that allow networks to draw curved decision boundaries.',
+    ],
+    experimentGoal: '🧪 Interactive Goal: Click "Send Signal Pulse" below to watch data signals propagate through the synaptic wires from inputs to output!',
+    quizQuestion: 'Why are non-linear Activation Functions (like ReLU or Tanh) mandatory in deep networks?',
     quizOptions: [
-      'They transform simple straight lines into curved, non-linear decision boundaries.',
-      'They prevent the computer monitor from flickering.',
-      'They automatically save the file to hard drive.',
+      'Without them, combining 100 hidden layers would just collapse into a single straight-line equation.',
+      'They prevent the internet connection from dropping.',
+      'They make the graphics card display brighter colors.',
     ],
     correctOptionIndex: 0,
-    quizExplanation: 'Spot on! Without non-linear activation functions (like ReLU or Tanh), a neural network could only solve straight-line problems!',
+    quizExplanation: 'Spot on! Without non-linear activations, any stack of linear layers collapses mathematically into a simple linear equation that can only draw straight lines!',
   },
   {
     id: 3,
-    title: 'Lesson 3: How AI Learns (Backpropagation)',
+    title: 'Lesson 3: How AI Learns (Backpropagation & Gradient Descent)',
     badge: 'Step 3 of 4',
-    subtitle: 'Neural networks do not start out smart—they learn by making mistakes, calculating loss, and adjusting weights backwards!',
-    quizQuestion: 'What happens when you increase the "Learning Rate" too high?',
+    subtitle: 'Neural networks are not born smart. They learn by making mistakes, computing a Loss score, and calculating exact weight adjustments backwards!',
+    keyConcepts: [
+      'Epoch: One complete pass evaluating all training examples.',
+      'Loss Function: Quantifies total prediction mistakes (Target = 0.0000).',
+      'Gradient Descent: The mathematical compass calculating which direction reduces loss fastest.',
+      'Learning Rate: Step size along the error slope (too high = wild overshooting; too low = super slow).',
+    ],
+    experimentGoal: '🧪 Interactive Goal: Click "🔴 Underfitting Demo" below to see why a 0-hidden-layer network fails on non-linear XOR data, then click "🟢 Optimal Learning Demo"!',
+    quizQuestion: 'What happens if you set the "Learning Rate" hyperparameter too high (e.g., 0.50)?',
     quizOptions: [
-      'The AI learns 100x faster without any errors.',
-      'The AI might take steps too large, overshooting the best weights and failing to learn.',
-      'The computer automatically shuts down.',
+      'The AI learns instantly with 100% perfection.',
+      'The weight steps become too large, overshooting the optimal minimum loss and causing error to bounce out of control.',
+      'The network converts into an audio synthesizer.',
     ],
     correctOptionIndex: 1,
-    quizExplanation: 'Exactly! A balanced learning rate ensures steady weight tweaks without bouncing wildly out of control.',
+    quizExplanation: 'Exactly! A learning rate that is too high causes the model to jump back and forth over the optimal solution valley without ever settling!',
   },
   {
     id: 4,
-    title: 'Lesson 4: Embeddings & Attention in Today\'s AI',
+    title: 'Lesson 4: How LLMs Understand Context (Embeddings & Attention)',
     badge: 'Step 4 of 4',
-    subtitle: 'See how modern AI systems like ChatGPT and Gemini convert language into vector maps and pay attention to context words.',
-    quizQuestion: 'How does an AI calculate that "King" is related to "Queen"?',
+    subtitle: 'Modern Large Language Models (like ChatGPT and Gemini) process language by mapping words into vector coordinate spaces and paying attention to context words.',
+    keyConcepts: [
+      'Tokenization: Breaking text into subwords and mapping them to integer IDs.',
+      'Vector Embedding: Placing words in coordinate space so "King" and "Queen" sit close together.',
+      'Self-Attention: Dynamic weighting matrix that links "river" to "bank" in "river bank".',
+      'Next-Token Prediction: Softmax probability distribution selecting the next word.',
+    ],
+    experimentGoal: '🧪 Interactive Goal: Hover over different words in the Self-Attention sentence visualizer below to see how context words light up in real-time!',
+    quizQuestion: 'How does a Transformer model distinguish between "bank" (financial institution) and "bank" (river side)?',
     quizOptions: [
-      'It looks up the words in an English dictionary.',
-      'It maps words to numerical coordinates (embeddings) where related concepts sit close together.',
-      'It guesses randomly every time.',
+      'It looks up every word in an Oxford dictionary before answering.',
+      'Self-Attention computes contextual weight vectors between "bank" and surrounding words like "river" or "loan".',
+      'It picks a random definition every time.',
     ],
     correctOptionIndex: 1,
-    quizExplanation: 'Bravo! Word embeddings represent semantic concepts as points in a vector space!',
+    quizExplanation: 'Bravo! Self-Attention dynamically re-weighs the word embedding based on the surrounding context tokens in the sentence!',
   },
 ];
 
@@ -129,6 +159,21 @@ export const GuidedTour: React.FC<GuidedTourProps> = ({ onNavigateTab }) => {
             </span>
             <h1 className="text-xl sm:text-2xl font-black text-slate-900 mt-2 uppercase tracking-tight">{activeStep.title}</h1>
             <p className="text-xs sm:text-sm font-medium text-slate-700 max-w-2xl mt-1 leading-relaxed">{activeStep.subtitle}</p>
+
+            {/* Key Concepts Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 pt-3 border-t-2 border-slate-200 text-xs">
+              {activeStep.keyConcepts.map((concept, cIdx) => (
+                <div key={cIdx} className="bg-[#FEFCE8] p-2.5 rounded-xl border border-slate-900 font-bold text-slate-900 flex items-start gap-2 shadow-[2px_2px_0px_0px_#1E293B]">
+                  <span className="text-[#818CF8] font-black">•</span>
+                  <span>{concept}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Experiment Goal Callout */}
+            <div className="bg-[#4ADE80] text-slate-900 p-3 rounded-2xl border-2 border-slate-900 shadow-[3px_3px_0px_0px_#166534] text-xs font-black mt-3">
+              {activeStep.experimentGoal}
+            </div>
           </div>
 
           <div className="flex items-center gap-2">

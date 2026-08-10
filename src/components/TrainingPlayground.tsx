@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { ActivationType, DatasetPreset, Point2D, NetworkTopology } from '../types';
 import { NeuralNetwork, generateDataset } from '../utils/nnEngine';
 import { sound } from '../utils/sound';
-import { Play, Pause, RotateCcw, FastForward, Sliders, Layers, Sparkles, PlusCircle, HelpCircle } from 'lucide-react';
+import { Play, Pause, RotateCcw, FastForward, Sliders, Layers, Sparkles, PlusCircle, HelpCircle, Info } from 'lucide-react';
 
 interface TrainingPlaygroundProps {
   initialPreset?: DatasetPreset;
@@ -226,14 +226,96 @@ export const TrainingPlayground: React.FC<TrainingPlaygroundProps> = ({
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FDE047] text-slate-900 text-xs font-black uppercase tracking-wider border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
             <span>Module 3 & Sandbox</span>
             <span>•</span>
-            <span>How AI Learns in Real-Time</span>
+            <span>How AI Learns via Gradient Descent</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-            2D Decision Boundary & Training Playground
+            Training Playground & 2D Decision Boundary
           </h1>
           <p className="text-indigo-100 text-sm sm:text-base font-medium leading-relaxed">
-            Watch the neural network learn in real-time as backpropagation adjusts weights to carve out decision boundaries (Blue Region vs Red Region)!
+            AI models are not programmed line-by-line; they learn by trial and error! Watch <strong>Backpropagation</strong> and <strong>Gradient Descent</strong> adjust weights step by step to carve out decision boundaries separating Blue points from Red points.
           </p>
+        </div>
+      </div>
+
+      {/* "What Does What in AI Training?" Explainer Banner */}
+      <div className="bg-[#FEFCE8] rounded-3xl p-6 border-4 border-slate-900 shadow-[8px_8px_0px_0px_#1E293B] space-y-4">
+        <h3 className="font-black text-slate-900 text-sm sm:text-base uppercase tracking-tight flex items-center gap-2">
+          <Info className="w-5 h-5 text-[#818CF8] stroke-[3]" />
+          What Does What? (Training Hyperparameters)
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#818CF8] uppercase block mb-1">Epoch (Training Loop)</span>
+            <p className="text-slate-700 font-semibold">
+              One full cycle where the AI evaluates all dataset points, calculates mistake scores, and updates weights.
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-rose-600 uppercase block mb-1">Loss (Mistake Score)</span>
+            <p className="text-slate-700 font-semibold">
+              Quantifies prediction errors. Goal: reduce loss to near 0.0000.
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#166534] uppercase block mb-1">Learning Rate (Step Size)</span>
+            <p className="text-slate-700 font-semibold">
+              How far weights move each step. Too large = overshoots and fails; too small = learns too slowly.
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#FB923C] uppercase block mb-1">Decision Boundary</span>
+            <p className="text-slate-700 font-semibold">
+              The dividing curve created by the network to classify Blue vs Red regions.
+            </p>
+          </div>
+        </div>
+
+        {/* Underfitting vs Overfitting Presets */}
+        <div className="pt-3 border-t-2 border-slate-900 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-black uppercase text-slate-900 mr-1">🎯 Live Concepts Demos:</span>
+          
+          <button
+            onClick={() => {
+              setHiddenLayers([]);
+              setPreset('xor');
+              setLearningRate(0.03);
+              resetNetwork('xor');
+              sound.playPulse(400, 0.05);
+            }}
+            className="px-3 py-1.5 bg-rose-100 hover:bg-rose-200 text-rose-950 text-xs font-extrabold uppercase rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B] hover:translate-y-0.5 transition-all"
+          >
+            🔴 Underfitting Demo (0 Hidden Layers vs XOR)
+          </button>
+
+          <button
+            onClick={() => {
+              setHiddenLayers([6, 4]);
+              setPreset('xor');
+              setLearningRate(0.03);
+              resetNetwork('xor');
+              sound.playPulse(600, 0.05);
+            }}
+            className="px-3 py-1.5 bg-[#4ADE80] hover:bg-emerald-300 text-slate-900 text-xs font-black uppercase rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B] hover:translate-y-0.5 transition-all"
+          >
+            🟢 Optimal Learning Demo (2 Layers, LR = 0.03)
+          </button>
+
+          <button
+            onClick={() => {
+              setHiddenLayers([8, 6]);
+              setPreset('circle');
+              setLearningRate(0.35);
+              resetNetwork('circle');
+              sound.playPulse(300, 0.05);
+            }}
+            className="px-3 py-1.5 bg-[#FDE047] hover:bg-yellow-300 text-slate-900 text-xs font-black uppercase rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B] hover:translate-y-0.5 transition-all"
+          >
+            ⚡ High Learning Rate (Wild Overshooting)
+          </button>
         </div>
       </div>
 

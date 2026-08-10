@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { sound } from '../utils/sound';
-import { Type, Sparkles, MapPin, ArrowRight, Layers, HelpCircle, Lightbulb } from 'lucide-react';
+import { Type, Sparkles, MapPin, ArrowRight, Layers, HelpCircle, Lightbulb, Info } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface WordPoint {
@@ -81,14 +81,52 @@ export const WordEmbeddingsVisualizer: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FDE047] text-slate-900 text-xs font-black uppercase tracking-wider border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
             <span>Module 4</span>
             <span>•</span>
-            <span>Language & Attention</span>
+            <span>Language, LLMs & Transformers</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-            How AI Understands Words: Embeddings & Attention
+            How LLMs Understand Language: Embeddings & Attention
           </h1>
           <p className="text-indigo-100 text-sm sm:text-base font-medium leading-relaxed">
-            Computers cannot process raw English words directly—they convert every word into coordinates in a high-dimensional vector space where similar concepts cluster together!
+            Large Language Models (like ChatGPT and Gemini) do not read English text like humans—they convert words into <strong>Vector Embeddings</strong> and use <strong>Self-Attention Mechanisms</strong> to connect context across entire documents!
           </p>
+        </div>
+      </div>
+
+      {/* "What Does What in Modern LLMs?" Explainer Banner */}
+      <div className="bg-[#FEFCE8] rounded-3xl p-6 border-4 border-slate-900 shadow-[8px_8px_0px_0px_#1E293B] space-y-4">
+        <h3 className="font-black text-slate-900 text-sm sm:text-base uppercase tracking-tight flex items-center gap-2">
+          <Info className="w-5 h-5 text-[#818CF8] stroke-[3]" />
+          What Does What? (The LLM Pipeline)
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#818CF8] uppercase block mb-1">1. Tokenization</span>
+            <p className="text-slate-700 font-semibold">
+              Splits text into subword chunks and converts each chunk into a unique integer ID (e.g., "Cat" → 4821).
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#166534] uppercase block mb-1">2. Vector Embeddings</span>
+            <p className="text-slate-700 font-semibold">
+              Maps Token IDs into a multi-dimensional map where related concepts sit physically close together.
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#FB923C] uppercase block mb-1">3. Self-Attention</span>
+            <p className="text-slate-700 font-semibold">
+              Allows words to look at surrounding words to figure out exact context (e.g., river bank vs money bank).
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#4338CA] uppercase block mb-1">4. Softmax Prediction</span>
+            <p className="text-slate-700 font-semibold">
+              Generates probability scores across all words in memory to choose the single best next token.
+            </p>
+          </div>
         </div>
       </div>
 

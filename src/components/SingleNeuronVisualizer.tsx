@@ -64,14 +64,99 @@ export const SingleNeuronVisualizer: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FDE047] text-slate-900 text-xs font-black uppercase tracking-wider border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
             <span>Module 1</span>
             <span>•</span>
-            <span>The Building Block of AI</span>
+            <span>The Core Unit of Artificial Intelligence</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-            How a Single Neuron Makes Decisions
+            How a Single Neuron Works: Step-by-Step
           </h1>
           <p className="text-indigo-100 text-sm sm:text-base font-medium leading-relaxed">
-            Just like a nerve cell in your brain, an artificial neuron receives input signals, weighs their importance, adds a baseline inclination (bias), and decides whether to trigger an output!
+            Every AI model—from simple email spam detectors to ChatGPT—is made of billions of these math units called <strong>Neurons (Perceptrons)</strong>. A neuron takes incoming numbers, weights their importance, adds a baseline inclination (bias), and applies a gate function to output a result.
           </p>
+        </div>
+      </div>
+
+      {/* "What Does What?" Quick Concepts Reference */}
+      <div className="bg-[#FEFCE8] rounded-3xl p-6 border-4 border-slate-900 shadow-[8px_8px_0px_0px_#1E293B] space-y-4">
+        <h3 className="font-black text-slate-900 text-sm sm:text-base uppercase tracking-tight flex items-center gap-2">
+          <Info className="w-5 h-5 text-[#818CF8] stroke-[3]" />
+          What Does What? (The Anatomy of a Neuron)
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-slate-900 uppercase block mb-1">1. Inputs (x₁, x₂)</span>
+            <p className="text-slate-700 font-semibold">
+              The raw facts or feature signals fed into the neuron (e.g., 1 = Sunny, 0 = Rainy).
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#166534] uppercase block mb-1">2. Weights (w₁, w₂)</span>
+            <p className="text-slate-700 font-semibold">
+              Importance knobs. Positive weights boost a feature; negative weights penalize it; 0 ignores it.
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#FB923C] uppercase block mb-1">3. Bias (b)</span>
+            <p className="text-slate-700 font-semibold">
+              Baseline threshold. A negative bias makes the neuron strict (needs strong positive evidence to fire).
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#818CF8] uppercase block mb-1">4. Activation Gate (σ)</span>
+            <p className="text-slate-700 font-semibold">
+              Squashes the weighted sum into a standard output score between 0.0 (NO) and 1.0 (YES).
+            </p>
+          </div>
+        </div>
+
+        {/* Quick Hands-On Experiments */}
+        <div className="pt-3 border-t-2 border-slate-900 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-black uppercase text-slate-900 mr-1">🧪 Try Quick Experiments:</span>
+          
+          <button
+            onClick={() => {
+              setInput1(1.0);
+              setInput2(1.0);
+              setWeight1(0.0);
+              setWeight2(3.0);
+              setBias(-1.0);
+              sound.playPulse(500, 0.05);
+            }}
+            className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-900 text-xs font-extrabold uppercase rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B] hover:translate-y-0.5 transition-all"
+          >
+            1. Zero Weight (Ignore Input 1)
+          </button>
+
+          <button
+            onClick={() => {
+              setInput1(1.0);
+              setInput2(1.0);
+              setWeight1(-4.0);
+              setWeight2(3.0);
+              setBias(-0.5);
+              sound.playPulse(400, 0.05);
+            }}
+            className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-900 text-xs font-extrabold uppercase rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B] hover:translate-y-0.5 transition-all"
+          >
+            2. Negative Weight (Penalize)
+          </button>
+
+          <button
+            onClick={() => {
+              setInput1(1.0);
+              setInput2(1.0);
+              setWeight1(2.0);
+              setWeight2(2.0);
+              setBias(-6.0);
+              sound.playPulse(300, 0.05);
+            }}
+            className="px-3 py-1.5 bg-white hover:bg-slate-100 text-slate-900 text-xs font-extrabold uppercase rounded-xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B] hover:translate-y-0.5 transition-all"
+          >
+            3. Strict Bias (-6.0)
+          </button>
         </div>
       </div>
 
@@ -80,7 +165,7 @@ export const SingleNeuronVisualizer: React.FC = () => {
         <div className="flex items-center justify-between">
           <span className="text-xs font-black uppercase tracking-wider text-slate-900 flex items-center gap-2">
             <div className="w-7 h-7 bg-[#FB923C] text-white rounded-full flex items-center justify-center font-black text-xs shadow-[2px_2px_0px_0px_#c2410c]">01</div>
-            Pick a Real-World Everyday Scenario
+            Pick a Real-World Scenario
           </span>
           <button
             onClick={() => loadAnalogyPresets(selectedAnalogyId)}
@@ -91,7 +176,7 @@ export const SingleNeuronVisualizer: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {REAL_WORLD_ANALOGIES.map((analogy) => {
             const isSelected = analogy.id === selectedAnalogyId;
             return (

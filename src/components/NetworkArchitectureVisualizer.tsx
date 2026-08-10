@@ -122,14 +122,52 @@ export const NetworkArchitectureVisualizer: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FDE047] text-slate-900 text-xs font-black uppercase tracking-wider border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
             <span>Module 2</span>
             <span>•</span>
-            <span>Connecting Millions of Neurons</span>
+            <span>Connecting Billions of Neurons</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-            Multi-Layer Neural Network Architecture
+            Multi-Layer Deep Neural Networks
           </h1>
           <p className="text-indigo-100 text-sm sm:text-base font-medium leading-relaxed">
-            By stacking neurons in layers, neural networks can process complex non-linear patterns. Watch signals flow from inputs, through hidden layers, to the final output!
+            A single neuron can only make simple linear decisions. By stacking neurons into <strong>Hidden Layers</strong>, deep neural networks learn to break complex problems into simple hierarchical features!
           </p>
+        </div>
+      </div>
+
+      {/* "What Does What in Deep AI?" Explainer Banner */}
+      <div className="bg-[#FEFCE8] rounded-3xl p-6 border-4 border-slate-900 shadow-[8px_8px_0px_0px_#1E293B] space-y-4">
+        <h3 className="font-black text-slate-900 text-sm sm:text-base uppercase tracking-tight flex items-center gap-2">
+          <Info className="w-5 h-5 text-[#818CF8] stroke-[3]" />
+          What Does What? (Feature Extraction Hierarchy)
+        </h3>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#818CF8] uppercase block mb-1">Layer 0: Input Layer</span>
+            <p className="text-slate-700 font-semibold">
+              Raw sensory data fed into the network (e.g., individual image pixel brightness values or sensor readings).
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#FB923C] uppercase block mb-1">Layer 1: Low-Level Detector</span>
+            <p className="text-slate-700 font-semibold">
+              First hidden layer detects basic primitive edges, horizontal lines, color gradients, or pitch changes.
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#166534] uppercase block mb-1">Layer 2: Mid-Level Concepts</span>
+            <p className="text-slate-700 font-semibold">
+              Second hidden layer combines basic edges into shapes, textures, curves, eyes, wheels, or sound phonemes.
+            </p>
+          </div>
+
+          <div className="bg-white p-3.5 rounded-2xl border-2 border-slate-900 shadow-[2px_2px_0px_0px_#1E293B]">
+            <span className="font-black text-[#4338CA] uppercase block mb-1">Output Layer: Final Decision</span>
+            <p className="text-slate-700 font-semibold">
+              Aggregates all high-level concepts into probability predictions (e.g., 98% Cat, 2% Dog).
+            </p>
+          </div>
         </div>
       </div>
 
