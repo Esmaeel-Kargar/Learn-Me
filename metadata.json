@@ -1,0 +1,6 @@
+{
+  "name": "AI Inside Out - Interactive Neural Net Playground",
+  "description": "An interactive visual guide and sandbox helping beginners understand artificial intelligence, neural networks, weights, activation functions, and training in real-time.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
