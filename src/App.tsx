@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Header, TabType } from './components/Header';
 import { GuidedTour } from './components/GuidedTour';
 import { SingleNeuronVisualizer } from './components/SingleNeuronVisualizer';
-import { NetworkArchitectureVisualizer } from './components/NetworkArchitectureVisualizer';
-import { TrainingPlayground } from './components/TrainingPlayground';
-import { WordEmbeddingsVisualizer } from './components/WordEmbeddingsVisualizer';
+import { PixelRecognizer } from './components/PixelRecognizer';
+import { LLMExplainer } from './components/LLMExplainer';
+import { TrickTheAIArena } from './components/TrickTheAIArena';
+import { SelfDrivingSim } from './components/SelfDrivingSim';
 import { MiniChallenges } from './components/MiniChallenges';
 import { ConceptGlossaryModal } from './components/ConceptGlossaryModal';
 import { sound } from './utils/sound';
@@ -30,9 +31,10 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {activeTab === 'guided' && <GuidedTour onNavigateTab={setActiveTab} />}
         {activeTab === 'single' && <SingleNeuronVisualizer />}
-        {activeTab === 'network' && <NetworkArchitectureVisualizer />}
-        {activeTab === 'sandbox' && <TrainingPlayground />}
-        {activeTab === 'embeddings' && <WordEmbeddingsVisualizer />}
+        {activeTab === 'draw' && <PixelRecognizer />}
+        {activeTab === 'llm' && <LLMExplainer />}
+        {activeTab === 'trick' && <TrickTheAIArena />}
+        {activeTab === 'driver' && <SelfDrivingSim />}
         {activeTab === 'challenges' && <MiniChallenges />}
       </main>
 
